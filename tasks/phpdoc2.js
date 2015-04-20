@@ -26,15 +26,7 @@ module.exports = function(grunt) {
 
     var ret = null;
 
-    var input = options.input;
-    var output = options.output;
-    var png = options.png;
-
     var phpdocScript = (grunt.file.exists("node_modules/grunt-phpdoc2") ? "node_modules/grunt-phpdoc2/" : "") + "vendor/soundasleep/phpdoc2/phpdoc2.php";
-
-    grunt.verbose.writeln("Input: " + input);
-    grunt.verbose.writeln("Output: " + output);
-    grunt.verbose.writeln("PNG: " + png);
 
     var changePath = "";
     if (grunt.file.exists("node_modules/grunt-phpdoc2")) {
@@ -56,7 +48,7 @@ module.exports = function(grunt) {
       phpdocScript,
       "--",
       "--output",
-      output
+      options.output
     ];
 
     // add directories

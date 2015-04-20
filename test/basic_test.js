@@ -32,5 +32,24 @@ exports.phpdoc2 = {
     test.expect(1);
     test.ok(grunt.file.read('tmp/basic/index.html'));
     test.done();
+  },
+
+  css: function(test) {
+    test.expect(1);
+    test.ok(grunt.file.read('tmp/basic/default.css'));
+    test.done();
+  },
+
+  namespace: function(test) {
+    test.expect(1);
+    test.ok(grunt.file.read('tmp/basic/namespace_Foo.html'));
+    test.done();
+  },
+
+  class: function(test) {
+    test.expect(1);
+    test.ok(grunt.file.read('tmp/basic/class_Foo_Bar.html'));
+    test.done();
   }
+
 };

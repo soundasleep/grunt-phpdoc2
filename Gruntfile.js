@@ -40,11 +40,11 @@ module.exports = function(grunt) {
     phpdoc2: {
       basic: {
         options: {
-          output: 'tmp/basic'
-        },
-        directories: [
-          'test/src'
-        ]
+          output: 'tmp/basic',
+          directories: [
+            'test/fixtures/src'
+          ]
+        }
       }
     },
 
