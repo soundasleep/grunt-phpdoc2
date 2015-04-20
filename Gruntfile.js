@@ -28,23 +28,23 @@ module.exports = function(grunt) {
       tests: ['tmp']
     },
 
+    mkdir: {
+      all: {
+        options: {
+          create: ['tmp']
+        }
+      }
+    },
+
     // Configuration to be run (and then tested).
     phpdoc2: {
-      default_options: {
+      basic: {
         options: {
+          output: 'tmp/basic'
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        directories: [
+          'test/src'
+        ]
       }
     },
 
@@ -62,10 +62,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-mkdir');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'phpdoc2', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'mkdir', 'phpdoc2', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

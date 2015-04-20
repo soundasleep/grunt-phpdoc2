@@ -8,6 +8,8 @@
 
 'use strict';
 
+var shell = require('shelljs');
+
 module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
@@ -16,35 +18,71 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('phpdoc2', 'Parse PHP documentation blocks and generate HTML output with PHPDoc2.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+      // TODO more default options
+      project_name: 'untitled',
+      directories: [],
+      output: 'docs/'
     });
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+    var ret = null;
 
-      // Handle options.
-      src += options.punctuation;
+    var input = options.input;
+    var output = options.output;
+    var png = options.png;
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+    var phpdocScript = (grunt.file.exists("node_modules/grunt-phpdoc2") ? "node_modules/grunt-phpdoc2/" : "") + "vendor/soundasleep/phpdoc2/phpdoc2.php";
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+    grunt.verbose.writeln("Input: " + input);
+    grunt.verbose.writeln("Output: " + output);
+    grunt.verbose.writeln("PNG: " + png);
+
+    var changePath = "";
+    if (grunt.file.exists("node_modules/grunt-phpdoc2")) {
+      changePath = "cd node_modules/grunt-phpdoc2 && ";
+    }
+
+    if (!grunt.file.exists(phpdocScript)) {
+      // try installing with composer
+      grunt.log.write("Installing latest phpdoc2 package using Composer...");
+      ret = shell.exec(changePath + "composer install");
+      if (ret.code) {
+        grunt.warn("Composer install returned " + ret);
+      }
+    }
+
+    var bin = "php";
+    var args = [
+      "-f",
+      phpdocScript,
+      "--",
+      "--output",
+      output
+    ];
+
+    // add directories
+    options.directories.forEach(function (d) {
+      args.push("--directory");
+      args.push(d);
     });
+
+    if (options.json) {
+      args.push("--json");
+      args.push(options.json);
+    }
+
+    if (options.config) {
+      args.push("--config");
+      args.push(options.config);
+    }
+
+    var command = bin + " " + args.join(' ');
+    grunt.verbose.writeln('Command: ' + command);
+
+    ret = shell.exec(command);
+    if (ret.code) {
+      grunt.warn("Script returned " + ret);
+    }
+
   });
 
 };
