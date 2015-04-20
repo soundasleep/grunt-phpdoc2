@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "42d2f70b82e22d4c5022f398e04c51bb",
+    "hash": "296aab588bddc6f4a1c4d214c5d52c31",
     "packages": [
         {
             "name": "corneltek/getoptionkit",
@@ -206,16 +206,16 @@
         },
         {
             "name": "soundasleep/phpdoc2",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/soundasleep/phpdoc2.git",
-                "reference": "6237365b2111b007e9a22b111dc135e69ec64bcd"
+                "reference": "4b3a43cd157c0c1cd65391051d504b8d1260a573"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/soundasleep/phpdoc2/zipball/6237365b2111b007e9a22b111dc135e69ec64bcd",
-                "reference": "6237365b2111b007e9a22b111dc135e69ec64bcd",
+                "url": "https://api.github.com/repos/soundasleep/phpdoc2/zipball/4b3a43cd157c0c1cd65391051d504b8d1260a573",
+                "reference": "4b3a43cd157c0c1cd65391051d504b8d1260a573",
                 "shasum": ""
             },
             "require": {
@@ -235,7 +235,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Parse PHP documentation blocks and generate HTML output",
-            "time": "2015-04-20 04:44:35"
+            "time": "2015-04-20 05:07:16"
         }
     ],
     "packages-dev": [],
