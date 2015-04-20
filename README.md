@@ -38,54 +38,69 @@ grunt.initConfig({
 ```
 
 ### Options
+    phpdoc2: {
+      basic: {
+        options: {
+          output: 'tmp/basic',
+          directories: [
+            'test/fixtures/src'
+          ]
+        }
+      }
+    },
 
-#### options.separator
+#### options.directories
+Type: List of `String`s
+Default value: `['.']`
+
+A list of directories that will be parsed for PHP files to generate documentation for.
+
+Equal to the `--directory` phpdoc2 command-line switch.
+
+#### options.output
 Type: `String`
-Default value: `',  '`
+Default value: `docs/`
 
-A string value that is used to do something with whatever.
+The target destination to generate HTML documentation to.
 
-#### options.punctuation
+Note that this target destination directory will *not* be automatically deleted before generation.
+
+Equal to the `--output` phpdoc2 command-line switch.
+
+#### options.config
 Type: `String`
-Default value: `'.'`
+Default value: (not supplied)
 
-A string value that is used to do something else with whatever else.
+If defined, replace all configuration options (with the exception of `directories` and `output`) with the options loaded from this JSON file.
+
+Equal to the `--config` phpdoc2 command-line switch.
+
+#### options.json
+Type: `String`
+Default value: (not supplied)
+
+If defined, output the parsed PHP database to the given JSON file (may be very large).
+
+Equal to the `--json` phpdoc2 command-line switch.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+This will scan all PHP files within `src/` and its subdirectories, and generate PHP documentation in the `docs/` directory.
 
 ```js
 grunt.initConfig({
   phpdoc2: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  phpdoc2: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    basic: {
+      options: {
+        output: 'docs/',
+        directories: [
+          'src/'
+        ]
+      }
+    }
   },
 });
 ```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
