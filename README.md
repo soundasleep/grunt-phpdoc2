@@ -2,6 +2,8 @@
 
 > Parse PHP documentation blocks and generate HTML output with PHPDoc2.
 
+This uses the [phpdoc2](https://github.com/soundasleep/phpdoc2) PHP component.
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
