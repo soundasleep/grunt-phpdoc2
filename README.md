@@ -38,16 +38,6 @@ grunt.initConfig({
 ```
 
 ### Options
-    phpdoc2: {
-      basic: {
-        options: {
-          output: 'tmp/basic',
-          directories: [
-            'test/fixtures/src'
-          ]
-        }
-      }
-    },
 
 #### options.directories
 Type: List of `String`s
