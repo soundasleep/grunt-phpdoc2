@@ -1,7 +1,7 @@
 {
   "name": "grunt-phpdoc2",
   "description": "Parse PHP documentation blocks and generate HTML output with PHPDoc2.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/soundasleep/grunt-phpdoc2",
   "author": {
     "name": "Jevon Wright",
